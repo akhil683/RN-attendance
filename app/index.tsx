@@ -1,11 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient'
-import { useRouter } from 'expo-router'
+import { router } from 'expo-router'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default function index() {
-   const router = useRouter()
 
   return (
    <View style={styles.wrapper}>
@@ -21,20 +20,23 @@ export default function index() {
          end={{x: 0.5, y: 0.8}}
       > 
          <Animated.View entering={FadeInDown.delay(100).springify()} style={styles.welcomeContainer}>
-            <Text style={[styles.welcomeText, {fontSize: hp(6)} ]}>Welcome</Text>
+            <Text style={[styles.welcomeText, {fontSize: hp(4)} ]}>Welcome To</Text>
+            <Text style={[styles.welcomeText, {fontSize: hp(5), color: 'orange'}]}>Proxy Attendance</Text>
             <Text style={[styles.welcomePara, { width: wp(80), fontSize: hp(2)}]}>Get started right now to be able to track your attendance record of classes & create your todo-list.</Text>
          </Animated.View>
 
          <Animated.View style={styles.buttonContainer} entering={FadeInDown.delay(200).springify()}>
 
             <TouchableOpacity 
-               style={[styles.button, {backgroundColor: 'orange', borderColor: 'transparent'}]}>
-                  <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), }]}>LOG IN</Text>
+               onPress={() => router.push("/signin")}
+               style={styles.button}>
+                  <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), backgroundColor: 'orange', borderColor: 'transparent'}]}>LOG IN</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
-               style={[styles.button, { borderColor: 'orange'}]}>
-                  <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), color: 'orange'}]}>SIGN UP</Text>
+               onPress={() => router.push("/signup")}
+               style={styles.button}>
+                  <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), color: 'orange', borderColor: 'orange'}]}>SIGN UP</Text>
             </TouchableOpacity>
 
          </Animated.View>
@@ -57,12 +59,11 @@ const styles = StyleSheet.create({
       display: 'flex',
       justifyContent: 'flex-end',
       paddingBottom: 40,
+      paddingLeft: 20,
    },
 welcomeContainer: {
    display: 'flex',
-   alignItems: 'center',
    flexDirection: 'column',
-   gap: 12,
 },
 welcomeText: {
    color: 'white',
@@ -70,7 +71,7 @@ welcomeText: {
 },
 welcomePara: {
    color: '#888',
-   textAlign: 'center',
+   marginTop: 12,
 },
 button: {
    display: 'flex',
@@ -81,15 +82,15 @@ buttonText: {
    color: 'white',
    fontWeight: 'bold',
    textAlign: 'center',
+   borderRadius: 12,
+   borderWidth: 4,
+   paddingVertical: 12,
 },
 buttonContainer: {
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
-   borderRadius: 12,
-   borderWidth: 4,
-   paddingVertical: 18,
    gap: 24,
-   marginTop: 36,
+   marginTop: 80,
 }
 })
