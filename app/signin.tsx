@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp  } from 'react-native-responsive-screen'
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
+import Animated, { FadeInDown } from 'react-native-reanimated'
 
 export default function SignIn() {
 
@@ -16,7 +16,7 @@ export default function SignIn() {
       />
 
       <LinearGradient 
-         style={[styles.gradient, {width: wp(100), height: hp(90)}]}
+         style={[styles.gradient, {width: wp(100), height: hp(100)}]}
          colors={['transparent', '#000']} 
          start={{x: 0.5, y: 0.0}}
          end={{x: 0.5, y: 0.8}} 
@@ -24,10 +24,10 @@ export default function SignIn() {
       <Animated.Text entering={FadeInDown.delay(100)} style={[styles.headerText, { fontSize: hp(4.5), }]}>SIGN IN</Animated.Text>
       <Animated.View entering={FadeInDown.delay(100)} style={[styles.formContainer, { width: wp(100), height: hp(50)}]}>
         <View>
-        <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(3)}]} placeholder='Email'  />
+        <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Email'  />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(3)}]} placeholder='Password'/>
+          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password'/>
         </View>
         <TouchableOpacity>
           <View style={[styles.button, { width: wp(80)}]}>
@@ -40,7 +40,7 @@ export default function SignIn() {
               Don't have any account?
           </Text>
           <TouchableOpacity style={{}} onPress={() => router.push("/signup")} >
-            <Text style={[ styles.footerText, { marginLeft: 6, color: 'orange' }]}>Sign Up</Text>
+            <Text style={[ styles.footerText, { marginLeft: 6, color: 'orange' }]}>Create Account</Text>
           </TouchableOpacity>
         </View>
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingHorizontal: 12,
   },
-   gradient: {
+  gradient: {
     display: 'flex',
     justifyContent: 'flex-end',
    },
@@ -80,11 +80,8 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     zIndex: 2,
-    backgroundColor: '#222',
+    backgroundColor: '#111',
     display: 'flex',
-    transform: [{
-      translateY: 30,
-    }],
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 40,
@@ -94,13 +91,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     backgroundColor: "white",
-    paddingVertical: 12,
+    paddingVertical: 10,
     borderRadius: 40,
     paddingLeft: 20,
   },
 button: {
   backgroundColor: 'orange',
-  paddingVertical: 14,
+  paddingVertical: 12,
   borderRadius: 40,
 },
 footerContainer: {
