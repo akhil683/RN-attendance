@@ -7,12 +7,12 @@ export default function _layout() {
          headerShown: false,
       }} 
    >
-   {/* <Stack.Screen 
-      name='home'
+   <Stack.Screen 
+      name='signin'
       options={{
          presentation:'fullScreenModal'
       }}
-   /> */}
+   />
    </Stack>
   )
 }

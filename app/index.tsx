@@ -1,7 +1,7 @@
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Animated, { FadeInDown } from 'react-native-reanimated'
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default function index() {
@@ -9,8 +9,9 @@ export default function index() {
   return (
    <View style={styles.wrapper}>
       {/* <StatusBar style="light" /> */}
-      <Image 
-         style={[styles.logoImage, {width: wp(100), height: hp(70)}]}
+      
+      <Image
+         style={[styles.logoImage, {width: wp(100), height: hp(65)}]}
          source={require("../assets/images/logo.png")} 
       />
       <LinearGradient
@@ -26,24 +27,23 @@ export default function index() {
          </Animated.View>
 
          <Animated.View style={styles.buttonContainer} entering={FadeInDown.delay(200).springify()}>
-
             <TouchableOpacity 
-               onPress={() => router.push("/signin")}
-               style={styles.button}>
+               onPress={() => router.push("/signin")}>
+               <View style={styles.button}>
                   <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), backgroundColor: 'orange', borderColor: 'transparent'}]}>LOG IN</Text>
+               </View>
             </TouchableOpacity>
-
             <TouchableOpacity 
-               onPress={() => router.push("/signup")}
-               style={styles.button}>
-                  <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), color: 'orange', borderColor: 'orange'}]}>SIGN UP</Text>
+               onPress={() => router.push("/signup")}>
+                  <View style={styles.button}>
+                     <Text style={[styles.buttonText, { width: wp(70), fontSize: hp(3), color: 'orange', borderColor: 'orange'}]}>SIGN UP</Text>
+                  </View>
             </TouchableOpacity>
-
          </Animated.View>
       </LinearGradient>      
 
    </View>
-  ) 
+  )
 }
 const styles = StyleSheet.create({
    wrapper: {
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
    logoImage: {
       position: 'absolute',
       top: 0,
+      transform: [{
+         rotate: '-10deg',
+      }]
    },
    gradient: {
       display: 'flex',
@@ -63,7 +66,6 @@ const styles = StyleSheet.create({
    },
 welcomeContainer: {
    display: 'flex',
-   flexDirection: 'column',
 },
 welcomeText: {
    color: 'white',
@@ -83,7 +85,7 @@ buttonText: {
    fontWeight: 'bold',
    textAlign: 'center',
    borderRadius: 12,
-   borderWidth: 4,
+   borderWidth: 3,
    paddingVertical: 12,
 },
 buttonContainer: {
@@ -91,6 +93,6 @@ buttonContainer: {
    justifyContent: 'center',
    alignItems: 'center',
    gap: 24,
-   marginTop: 80,
+   marginTop: 60,
 }
 })
