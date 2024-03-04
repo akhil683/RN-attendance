@@ -1,11 +1,13 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity  } from 'react-native'
 import { router } from 'expo-router'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import Animated, { FadeInDown } from 'react-native-reanimated'
+
 export default function index() {
 
   return (
    <View style={styles.Container}>
-      <View style={styles.headerContainer}>
+      <Animated.View entering={FadeInDown.delay(100)} style={styles.headerContainer}>
          <Text style={[styles.headerText, { fontSize: hp(5)}]}>
             Hi <Text style={{ color: 'orange'} }>Akhil !</Text>
          </Text>
@@ -15,15 +17,36 @@ export default function index() {
             source={require("../../assets/images/logo.png")} 
           />
          </TouchableOpacity>
-      </View>
+      </Animated.View>
 
-      <View style={styles.recordContainer}>
-        <Text style={[styles.recordHeaderText, { fontSize: hp(3)}]}>Your Record</Text>
+      <Animated.View entering={FadeInDown.delay(200)} style={styles.recordContainer}>
+        <Text style={[styles.recordHeaderText, { fontSize: hp(3)}]}>Attendance Record</Text>
+
         <View style={styles.recordBlockContainer}>
-          <View style={[styles.recordBlock, {width: wp(40), height: hp(10)}]}></View>
-          <View style={[styles.recordBlock, { width: wp(40), height: hp(10)}]}></View>
+
+          <View style={[styles.recordBlock, {width: wp(30), height: hp(15), backgroundColor: 'green'}]}>
+               <Text style={[styles.attendHeaderText, { fontSize: hp(2)}]}>Present</Text>
+               <View style={styles.attendTextContainer}>
+                  <Text style={[styles.attendText, { fontSize: hp(5)}]}>69</Text>
+               </View>
+          </View>
+
+          <View style={[styles.recordBlock, {width: wp(30), height: hp(15), backgroundColor: 'orange'}]}>
+            <Text style={[styles.attendHeaderText, { fontSize: hp(2)}]}>Proxy</Text>
+            <View style={styles.attendTextContainer}>
+               <Text style={[styles.attendText, { fontSize: hp(5)}]}>69</Text>
+            </View>
+          </View>
+
+          <View style={[styles.recordBlock, { width: wp(30), height: hp(15), backgroundColor: 'red'}]}>
+            <Text style={[styles.attendHeaderText, { fontSize: hp(2)}]}>Absent</Text>
+            <View style={styles.attendTextContainer}>
+               <Text style={[styles.attendText, { fontSize: hp(5)}]}>69</Text>
+            </View>
+          </View>
+
         </View>
-      </View>
+      </Animated.View>
    </View>
   )
 }
@@ -33,14 +56,13 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 50,
       backgroundColor: '#111',
-      paddingHorizontal: 24,
    },
    headerContainer: {
-    display: 'flex',
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
-    marginVertical: 16,
-
+      display: 'flex',
+      flexDirection: 'row', 
+      justifyContent: 'space-between',
+      marginVertical: 16,
+      paddingHorizontal: 24,
    },
    headerText: {
       color: 'white',
@@ -49,7 +71,9 @@ const styles = StyleSheet.create({
 
    },
    recordHeaderText: {
-    color: '#fffaf0',
+      color: '#fffaf0',
+      marginLeft: 16,
+
    },
    recordBlockContainer: {
       display: 'flex',
@@ -58,8 +82,21 @@ const styles = StyleSheet.create({
       marginVertical: 16,
    },
    recordBlock: {
-    backgroundColor: 'orange', 
     borderRadius: 12,
+   },
+   attendHeaderText: {
+      color: 'white',
+      paddingLeft: 10,
+      paddingTop: 8,
+   },
+   attendTextContainer: {
+      position: 'absolute',
+      bottom: 10,
+      right: 12,
+   },
+   attendText: {
+      fontWeight: 'bold',
+      color: 'white',
    }
 
 })
