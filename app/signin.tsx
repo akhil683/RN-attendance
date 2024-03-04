@@ -29,7 +29,7 @@ export default function SignIn() {
         <View>
           <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password'/>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/(tabs)/home")}>
           <View style={[styles.button, { width: wp(80)}]}>
             <Text style={{ fontSize: hp(2.5), textAlign: 'center', color: 'white'}}>LOGIN</Text>
           </View>
