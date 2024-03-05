@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
    },
    attendHeaderText: {
       color: 'white',
+      fontWeight: '700',
       paddingLeft: 10,
       paddingTop: 8,
    },
