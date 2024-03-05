@@ -32,9 +32,9 @@ export default function _layout() {
          }}
       />
       <Tabs.Screen
-         name='settings'
+         name='account'
          options={{
-            tabBarIcon: ({ color }) => <Ionicons name="settings-sharp" size={28} color={color} />
+            tabBarIcon: ({ color }) => <MaterialIcons name='account-circle' size={28} color={color} />
          }}
       />
    </Tabs>
