@@ -10,19 +10,25 @@ export default function account() {
             source={require("../../assets/images/logo.png")} 
             style={{ width: wp(40), height: wp(40)}}
          />
-         <Text style={{ fontSize: hp(3), color: 'white'}}>Akhil Palsra</Text>
+         <Text style={{ fontSize: hp(3.5), color: 'white', fontWeight: 'bold'}}>Akhil Palsra</Text>
       </View>
       <View style={{ marginVertical: 20}}>
          <Text style={{ fontSize: hp(2.5), color: 'white'}}>Overall Record</Text>
          <View style={[styles.totalContainer, { width: wp(90)}]}>
-            <View style={[styles.totalBox, { width: wp(40), height: hp(15)}]}>
-               <Text style={{ textAlign: 'center', fontSize: hp(2), color: 'white'}}>Total Presents</Text>
-               <Text style={{ textAlign: 'center', fontSize: hp(2.5), color: 'white', fontWeight: 'bold'}}>324</Text>
+            <View style={[styles.totalBox, { width: wp(40), height: hp(10), backgroundColor: 'green'}]}>
+               <Text style={[styles.totalText, { fontSize: hp(2)}]}>Total Presents</Text>
+               <Text style={[styles.totalText, { fontSize: hp(3), fontWeight: 'bold'}]}>324</Text>
             </View>
-            <View style={[styles.totalBox, { width: wp(40), height: hp(15)}]}>
-               <Text style={{ textAlign: 'center', fontSize: hp(2), color: 'white'}}>Total Presents</Text>
-               <Text style={{ textAlign: 'center', fontSize: hp(2.5), color: 'white', fontWeight: 'bold'}}>324</Text>
+            <View style={[styles.totalBox, { width: wp(40), height: hp(10), backgroundColor: 'red'}]}>
+               <Text style={[styles.totalText, { fontSize: hp(2)}]}>Total Presents</Text>
+               <Text style={[styles.totalText, { fontSize: hp(3), fontWeight: 'bold'}]}>324</Text>
             </View>
+         </View>
+      </View>
+      <View style={styles.chartContainer}>
+         <Text style={{ fontSize: hp(2.5), color: 'white'}}>Attendance Overview</Text>
+         <View style={styles.chartBox}>
+
          </View>
       </View>
    </View>
@@ -37,11 +43,11 @@ const styles = StyleSheet.create({
    accountContainer: {
       display: 'flex',
       alignItems: 'center',
-      // backgroundColor: '#cc5500',
+      backgroundColor: '#222',
       paddingTop: 40,
       paddingBottom: 30,
-      borderBottomLeftRadius: 70,
-      borderBottomRightRadius: 70,
+      // borderBottomLeftRadius: 70,
+      // borderBottomRightRadius: 70,
    },
    totalContainer: {
       display: 'flex',
@@ -56,9 +62,18 @@ const styles = StyleSheet.create({
    totalBox: {
       display: 'flex',
       justifyContent: 'center',
-      gap: 12,
+      gap: 8,
       borderRadius: 12,
-      backgroundColor: 'green',
       padding: 10,
+   },
+   totalText: {
+      textAlign: 'center',
+      color: 'white',
+   },
+   chartContainer: {
+
+   },
+   chartBox: {
+
    }
 })

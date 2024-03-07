@@ -11,7 +11,7 @@ export default function index() {
          <Text style={[styles.headerText, { fontSize: hp(5)}]}>
             Hi <Text style={{ color: 'orange'} }>Akhil !</Text>
          </Text>
-         <TouchableOpacity onPress={() => router.push("/(tabs)/settings")}>
+         <TouchableOpacity onPress={() => router.push("/(tabs)/account")}>
           <Image 
             style={{ width: hp(8), height: hp(8)}}
             source={require("../../assets/images/logo.png")} 

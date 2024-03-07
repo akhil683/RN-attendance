@@ -1,14 +1,14 @@
 import { FlatList,SafeAreaView, Image, StyleSheet, Text, View, ScrollView } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp  } from 'react-native-responsive-screen'
 
-  interface UserProps {
-    id: string,
-    name: string,
-    present: number,
-  }
+  // interface UserProps {
+  //   id: string,
+  //   name: string,
+  //   present: number,
+  // }
 
 export default function leaderBoard() {
-  const TopUsers: UserProps[] = [
+  const TopUsers = [
     {
       id: '1',
       name: 'Akhil',
@@ -49,16 +49,13 @@ export default function leaderBoard() {
   )
 }
 
-const TopUser = (topUser: UserProps) => {
+const TopUser = (topUser: any) => {
 
-  console.log(topUser)
   const imageSize: number = topUser.id == "1" ? 30 : 25
-  const borderColor: string = topUser.id == "1" ? "orange": 'white'
-
   return (
-    <View style={{ backgroundColor: 'green'}}>
+    <View style={{ backgroundColor: 'green', borderRadius: 8, padding: 6}}>
       <Image 
-        style={{ width: wp(imageSize), height: wp(imageSize), borderRadius: 60, borderWidth: 2, borderColor: borderColor }}
+        style={{ width: wp(imageSize), height: wp(imageSize), borderRadius: 60, borderWidth: 2, borderColor: topUser.id == "1" ? "orange" : "white"}}
         source={require('../../assets/images/logo.png')} 
       />
       <Text style={{ fontSize: hp(2), color: "white", textAlign: 'center'}}>Akhil Palsra</Text>
@@ -67,16 +64,18 @@ const TopUser = (topUser: UserProps) => {
     </View>
   )
 }
-const UserCard = (user: UserProps) => {
+const UserCard = (user: any) => {
   return (
-    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-      <Text>4</Text>
+    <View style={[styles.userCardContainer, { width: wp(90), marginHorizontal: wp(5)}]}>
+      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+      <Text style={{ fontSize: hp(2), color: 'white'}}>4</Text>
       <Image 
         source={require('../../assets/images/logo.png')} 
         style={{ width: hp(5), height: hp(5)}}
       />
-      <Text>Akhil Palsra</Text>
-      <Text></Text>
+      </View>
+      <Text style={{fontSize: hp(2), color: 'white'}}>Akhil Palsra</Text>
+      <Text style={{fontSize: hp(2), color: 'white', fontWeight: 'bold'}}>432</Text>
     </View>
   )
 }
@@ -97,4 +96,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
    },
+   userCardContainer: {
+    display: 'flex', 
+    flexDirection: 'row', 
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'orange',
+    marginBottom: 16,
+    padding: 4,
+    borderRadius: 8,
+   }
 })
