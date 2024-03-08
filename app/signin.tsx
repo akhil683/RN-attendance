@@ -1,11 +1,35 @@
+import { useState } from 'react'
+
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp  } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 
-export default function SignIn() {
+import { FIREBASE_AUTH } from '@/FirebaseConfig'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
+export default function SignIn() {
+  const [ email, setEmail ] = useState<string>("")
+  const [ password, setPassword ] = useState<string>("")
+  const [ loading, setLoading ] = useState<boolean>(false)
+  const auth = FIREBASE_AUTH
+
+  const signIn = async () => {
+    setLoading(true)
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password)
+      console.log(response)
+      alert("Successfully Signed In")
+      router.replace("/(tabs)/home")
+    } catch (error: any) {
+     alert("Sign in Failed" + error.message) 
+    } finally {
+      setLoading(false)
+    }
+  }
+
+ 
   return (
     <View style={styles.container}>
 
@@ -24,16 +48,34 @@ export default function SignIn() {
       <Animated.Text entering={FadeInDown.delay(100)} style={[styles.headerText, { fontSize: hp(4.5), }]}>SIGN IN</Animated.Text>
       <Animated.View entering={FadeInDown.delay(100)} style={[styles.formContainer, { width: wp(100), height: hp(50)}]}>
         <View>
-        <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Email'  />
+        <TextInput 
+          style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+          placeholder='Email' 
+          autoCapitalize='none' 
+          onChangeText={(text) => setEmail(text)}  
+          value={email} 
+        />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password'/>
+          <TextInput 
+            placeholder='Password' 
+            autoCapitalize='none' 
+            onChangeText={(text) => setPassword(text)} 
+            secureTextEntry={true} 
+            value={password}
+            style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+          />
         </View>
-        <TouchableOpacity onPress={() => router.push("/(tabs)/home")}>
+
+        { loading ? (
+          <ActivityIndicator size="large" color="#fffff" />
+        ) : (
+        <TouchableOpacity onPress={signIn}>
           <View style={[styles.button, { width: wp(80)}]}>
             <Text style={{ fontSize: hp(2.5), textAlign: 'center', color: 'white'}}>LOGIN</Text>
           </View>
         </TouchableOpacity> 
+        )}
 
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>

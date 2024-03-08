@@ -1,10 +1,32 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp  } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
+import { useState } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { FIREBASE_AUTH } from '@/FirebaseConfig'
 
 export default function signup() {
+  const [ email, setEmail ] = useState<string>("")
+  const [ password, setPassword ] = useState<string>("")
+  const [ loading, setLoading ] =  useState<boolean>(false)
+
+  const auth = FIREBASE_AUTH
+
+  const signUp= async () => {
+    setLoading(true)
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password)
+      alert("check your email")
+      router.replace("/(tabs)/home") 
+    } catch (error: any) {
+     alert("Sign in Failed" + error.message) 
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <View style={styles.container}>
 
@@ -21,20 +43,22 @@ export default function signup() {
          end={{x: 0.5, y: 0.8}} 
         >
       <Animated.Text entering={FadeInDown.delay(100)} style={[styles.headerText, { fontSize: hp(4.5), }]}>Create Account</Animated.Text>
+
+      <KeyboardAvoidingView behavior='padding'>
       <Animated.View entering={FadeInDown.delay(100)} style={[styles.formContainer, { width: wp(100), height: hp(55)}]}>
         <View>
         <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Name'  />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Email'/>
+          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Email' autoCapitalize='none' value={email} onChangeText={(text) => setEmail(text)} />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password'/>
+          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password' autoCapitalize='none' value={password} onChangeText={(text) => setPassword(text)} />
         </View>
         <View>
           <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Confirm Passowrd'/>
         </View>
-        <TouchableOpacity onPress={() => router.push("/(tabs)/home")}>
+        <TouchableOpacity onPress={signUp}>
           <View style={[styles.button, { width: wp(80)}]}>
             <Text style={{ fontSize: hp(2.5), textAlign: 'center', color: 'white'}}>CREATE ACCOUNT</Text>
           </View>
@@ -50,6 +74,7 @@ export default function signup() {
         </View>
 
       </Animated.View>
+      </KeyboardAvoidingView>
       </LinearGradient>
 
     </View>

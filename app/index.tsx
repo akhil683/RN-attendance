@@ -1,7 +1,7 @@
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
+import Animated, { FadeInDown } from 'react-native-reanimated'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default function index() {

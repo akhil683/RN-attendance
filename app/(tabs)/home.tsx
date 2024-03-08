@@ -1,9 +1,20 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity  } from 'react-native'
-import { router } from 'expo-router'
+import { Route, router } from 'expo-router'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
+import { NavigationProp } from '@react-navigation/native'
+import { FIREBASE_AUTH } from '@/FirebaseConfig'
 
-export default function index() {
+interface RouterProps {
+   navigation: NavigationProp<any, any>
+}
+
+export default function index({ navigation} : RouterProps) {
+  
+  const signOut = () => {
+    FIREBASE_AUTH.signOut() 
+    router.replace("/signin")
+  }
 
   return (
    <View style={styles.Container}>
@@ -18,6 +29,10 @@ export default function index() {
           />
          </TouchableOpacity>
       </Animated.View>
+
+      <TouchableOpacity onPress={signOut}>
+        <Text style={{ fontSize: hp(6), color: 'white'}}>Log Out</Text>
+      </TouchableOpacity>
 
       <Animated.View entering={FadeInDown.delay(200)} style={styles.recordContainer}>
         <Text style={[styles.recordHeaderText, { fontSize: hp(3)}]}>Attendance Record</Text>
