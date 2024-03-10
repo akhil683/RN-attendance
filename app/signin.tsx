@@ -71,7 +71,7 @@ export default function SignIn() {
         { loading ? (
           <ActivityIndicator size="large" color="#fffff" />
         ) : (
-        <TouchableOpacity onPress={() => router.push("/(tabs)/home")}>
+        <TouchableOpacity onPress={signIn}>
           <View style={[styles.button, { width: wp(80)}]}>
             <Text style={{ fontSize: hp(2.5), textAlign: 'center', color: 'white'}}>LOGIN</Text>
           </View>

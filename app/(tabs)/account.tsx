@@ -4,6 +4,7 @@ import { router } from 'expo-router'
 
 import { FIREBASE_AUTH } from '@/FirebaseConfig'
 import { useState } from 'react'
+import Chart from '@/components/Chart'
 
 export default function account() {
    const [ showLogOut, setShowLogOut ] = useState<boolean>(false)
@@ -62,8 +63,7 @@ export default function account() {
 
       <View style={styles.chartContainer}>
          <Text style={{ fontSize: hp(2.5), color: 'white'}}>Attendance Overview</Text>
-         <View style={styles.chartBox}>
-         </View>
+         <Chart />
       </View>
    </View>
   ) }
