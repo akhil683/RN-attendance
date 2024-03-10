@@ -17,7 +17,7 @@ export default function signup() {
   const signUp= async () => {
     setLoading(true)
     try {
-      const response = await createUserWithEmailAndPassword(auth, email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
       alert("check your email")
       router.replace("/(tabs)/home") 
     } catch (error: any) {
@@ -47,16 +47,34 @@ export default function signup() {
       <KeyboardAvoidingView behavior='padding'>
       <Animated.View entering={FadeInDown.delay(100)} style={[styles.formContainer, { width: wp(100), height: hp(55)}]}>
         <View>
-        <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Name'  />
+        <TextInput 
+          style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+          placeholder='Name'  
+        />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Email' autoCapitalize='none' value={email} onChangeText={(text) => setEmail(text)} />
+          <TextInput 
+            style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+            placeholder='Email' 
+            autoCapitalize='none' 
+            value={email} 
+            onChangeText={(text) => setEmail(text)} 
+          />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Password' autoCapitalize='none' value={password} onChangeText={(text) => setPassword(text)} />
+          <TextInput 
+            style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+            placeholder='Password' 
+            autoCapitalize='none' 
+            value={password} 
+            onChangeText={(text) => setPassword(text)} 
+          />
         </View>
         <View>
-          <TextInput style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} placeholder='Confirm Passowrd'/>
+          <TextInput 
+            style={[styles.textInput, { width: wp(80), fontSize: hp(2.5)}]} 
+            placeholder='Confirm Passowrd'
+          />
         </View>
         <TouchableOpacity onPress={signUp}>
           <View style={[styles.button, { width: wp(80)}]}>

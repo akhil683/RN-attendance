@@ -1,21 +1,21 @@
 import { FlatList,SafeAreaView, Image, StyleSheet, Text, View, ScrollView } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp  } from 'react-native-responsive-screen'
 
-  // interface UserProps {
-  //   id: string,
-  //   name: string,
-  //   present: number,
-  // }
+  interface UserProps {
+    id: string,
+    name: string,
+    present: number,
+  }
 
 export default function leaderBoard() {
   const TopUsers = [
     {
-      id: '1',
+      id: '2',
       name: 'Akhil',
       present: 46,
     },
     {
-      id: '2',
+      id: '1',
       name: 'Shivansh',
       present: 44,
     },
@@ -38,33 +38,33 @@ export default function leaderBoard() {
           numColumns={3}
           columnWrapperStyle={{ justifyContent: 'space-evenly'}}
           keyExtractor={topUser => topUser.id}
-          renderItem={topUser => <TopUser topUser={topUser} />}
+          renderItem={TopUser}
         />
         <FlatList 
           data={TopUsers}
           keyExtractor={User => User.id}
-          renderItem={User => <UserCard user={User} />}
+          renderItem={UserCard}
         />
     </View>
   )
 }
 
-const TopUser = (topUser: any) => {
+const TopUser = ({ item }: {item: UserProps}) => {
 
-  const imageSize: number = topUser.id == "1" ? 30 : 25
+  const imageSize: number = item?.id == "1" ? 25: 20
   return (
-    <View style={{ backgroundColor: 'green', borderRadius: 8, padding: 6}}>
+    <View style={{ backgroundColor: 'green', borderRadius: 8, padding: 6, marginTop: 12, transform: [{ translateY: item?.id == "1" ? -12 : 0}] }}>
       <Image 
-        style={{ width: wp(imageSize), height: wp(imageSize), borderRadius: 60, borderWidth: 2, borderColor: topUser.id == "1" ? "orange" : "white"}}
+        style={{ width: wp(imageSize), height: wp(imageSize), borderRadius: 60, borderWidth: 2, borderColor: item?.id == "1" ? "orange" : "white"}}
         source={require('../../assets/images/logo.png')} 
       />
-      <Text style={{ fontSize: hp(2), color: "white", textAlign: 'center'}}>Akhil Palsra</Text>
-      <Text style={{ fontSize: hp(4), color: 'white', fontWeight: 'bold', textAlign: 'center'}}>48</Text>
+      <Text style={{ fontSize: hp(2), color: "white", textAlign: 'center'}}>{item?.name}</Text>
+      <Text style={{ fontSize: hp(4), color: 'white', fontWeight: 'bold', textAlign: 'center'}}>{item?.present}</Text>
       <Text style={{ fontSize: hp(1.5), color: 'white', textAlign: 'center'}}>Presents</Text>
     </View>
   )
 }
-const UserCard = (user: any) => {
+const UserCard = ({item }: {item: UserProps}) => {
   return (
     <View style={[styles.userCardContainer, { width: wp(90), marginHorizontal: wp(5)}]}>
       <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
@@ -74,8 +74,8 @@ const UserCard = (user: any) => {
         style={{ width: hp(5), height: hp(5)}}
       />
       </View>
-      <Text style={{fontSize: hp(2), color: 'white'}}>Akhil Palsra</Text>
-      <Text style={{fontSize: hp(2), color: 'white', fontWeight: 'bold'}}>432</Text>
+      <Text style={{fontSize: hp(2), color: 'white'}}>{item?.name}</Text>
+      <Text style={{fontSize: hp(2.5), color: 'orange', fontWeight: 'bold'}}>{item?.present}</Text>
     </View>
   )
 }
@@ -102,9 +102,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#444',
     marginBottom: 16,
-    padding: 4,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
     borderRadius: 8,
    }
 })

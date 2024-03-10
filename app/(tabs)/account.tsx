@@ -1,21 +1,39 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { router } from 'expo-router'
 
 import { FIREBASE_AUTH } from '@/FirebaseConfig'
+import { useState } from 'react'
 
 export default function account() {
+   const [ showLogOut, setShowLogOut ] = useState<boolean>(false)
 
   const signOut = () => {
     FIREBASE_AUTH.signOut() 
     router.replace("/signin")
   }
 
-
   return (
    <View style={styles.Container}>
+
+      { showLogOut &&
+      <View style={[styles.confirmLogOutContainer, { width: wp(100), height: hp(100)}]}>
+         <View style={{ padding: 20, backgroundColor: "#333", width: wp(80), borderRadius: 8}}>
+            <Text style={{fontSize: hp(2.5), color: 'white', textAlign: 'center'}}>Are you sure, you want to Log out?</Text>    
+            <View style={styles.confirmLogOutWrapper}>
+               <TouchableOpacity onPress={signOut} style={[styles.confirmLogOutButton, { backgroundColor: 'orange'}]}>
+                  <Text style={{ fontSize: hp(3)}}>Log out</Text>    
+               </TouchableOpacity>    
+               <TouchableOpacity onPress={() => setShowLogOut(false)} style={styles.confirmLogOutButton}>
+                  <Text style={{fontSize: hp(3), color: 'orange'}}>Cancel</Text>    
+               </TouchableOpacity>    
+            </View> 
+         </View>
+      </View>
+      }
+
       <View style={[styles.accountContainer, { width: wp(100)}]} >
-         <TouchableOpacity onPress={signOut} style={{ position: 'absolute', right: 12, top: 50}}>
+         <TouchableOpacity onPress={() => setShowLogOut(true)} style={{ position: 'absolute', right: 12, top: 50}}>
             <View style={styles.logOutContainer}>
                <Text style={{ fontSize: hp(1.5), color: 'orange'}}>Log Out</Text>
             </View>
@@ -54,14 +72,32 @@ const styles = StyleSheet.create({
       backgroundColor: '#111',
       alignItems: 'center',
    },
+   confirmLogOutContainer: {
+      zIndex: 10, 
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#111'
+   },
+   confirmLogOutWrapper: {
+      display: 'flex',
+      flexDirection: 'row',  
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 20,
+      marginTop: 24, 
+   }, 
+   confirmLogOutButton: {
+      paddingHorizontal: 12, 
+      paddingVertical: 6, 
+      borderRadius: 6
+   },  
    accountContainer: {
       display: 'flex',
       alignItems: 'center',
       backgroundColor: '#222',
       paddingTop: 40,
       paddingBottom: 30,
-      // borderBottomLeftRadius: 70,
-      // borderBottomRightRadius: 70,
    },
   logOutContainer: {
    borderRadius: 8,
