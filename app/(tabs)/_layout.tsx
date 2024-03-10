@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function _layout() {
 
@@ -23,6 +24,12 @@ export default function _layout() {
          name='leaderBoard'
          options={{
             tabBarIcon: ({ color }) => <MaterialIcons name="leaderboard" size={28} color={color} />
+         }}
+      />
+      <Tabs.Screen
+         name='todo'
+         options={{
+            tabBarIcon: ({ color }) => <FontAwesome5 name="tasks" size={24} color={color} />
          }}
       />
       <Tabs.Screen

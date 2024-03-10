@@ -1,11 +1,25 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { router } from 'expo-router'
+
+import { FIREBASE_AUTH } from '@/FirebaseConfig'
 
 export default function account() {
 
+  const signOut = () => {
+    FIREBASE_AUTH.signOut() 
+    router.replace("/signin")
+  }
+
+
   return (
    <View style={styles.Container}>
-      <View style={[styles.accountContainer, { width: wp(100)}]}>
+      <View style={[styles.accountContainer, { width: wp(100)}]} >
+         <TouchableOpacity onPress={signOut} style={{ position: 'absolute', right: 12, top: 50}}>
+            <View style={styles.logOutContainer}>
+               <Text style={{ fontSize: hp(1.5), color: 'orange'}}>Log Out</Text>
+            </View>
+         </TouchableOpacity>
          <Image 
             source={require("../../assets/images/logo.png")} 
             style={{ width: wp(40), height: wp(40)}}
@@ -37,7 +51,7 @@ export default function account() {
 const styles = StyleSheet.create({
    Container: {
       flex: 1,
-      backgroundColor: 'black',
+      backgroundColor: '#111',
       alignItems: 'center',
    },
    accountContainer: {
@@ -49,6 +63,13 @@ const styles = StyleSheet.create({
       // borderBottomLeftRadius: 70,
       // borderBottomRightRadius: 70,
    },
+  logOutContainer: {
+   borderRadius: 8,
+   paddingHorizontal: 8,
+   paddingVertical: 6,
+   borderWidth: 1,
+   borderColor: 'orange', 
+  },
    totalContainer: {
       display: 'flex',
       flexDirection: 'row',

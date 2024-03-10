@@ -85,6 +85,7 @@ const UserCard = (user: any) => {
 const styles = StyleSheet.create({
    Container: {
       flex: 1,
+      justifyContent: 'flex-start',
       paddingTop: 50,
       backgroundColor: '#111',
    },

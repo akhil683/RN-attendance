@@ -10,6 +10,7 @@ import { FIREBASE_AUTH } from '@/FirebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
 export default function SignIn() {
+
   const [ email, setEmail ] = useState<string>("")
   const [ password, setPassword ] = useState<string>("")
   const [ loading, setLoading ] = useState<boolean>(false)
@@ -70,7 +71,7 @@ export default function SignIn() {
         { loading ? (
           <ActivityIndicator size="large" color="#fffff" />
         ) : (
-        <TouchableOpacity onPress={signIn}>
+        <TouchableOpacity onPress={() => router.push("/(tabs)/home")}>
           <View style={[styles.button, { width: wp(80)}]}>
             <Text style={{ fontSize: hp(2.5), textAlign: 'center', color: 'white'}}>LOGIN</Text>
           </View>
