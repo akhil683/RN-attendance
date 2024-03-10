@@ -44,7 +44,6 @@ export default function signup() {
         >
       <Animated.Text entering={FadeInDown.delay(100)} style={[styles.headerText, { fontSize: hp(4.5), }]}>Create Account</Animated.Text>
 
-      <KeyboardAvoidingView behavior='padding'>
       <Animated.View entering={FadeInDown.delay(100)} style={[styles.formContainer, { width: wp(100), height: hp(55)}]}>
         <View>
         <TextInput 
@@ -86,13 +85,12 @@ export default function signup() {
           <Text style={styles.footerText}>
               Already have an account?
           </Text>
-          <TouchableOpacity style={{}} onPress={() => router.push("/signin")} >
+          <TouchableOpacity style={{}} onPress={() => router.replace("/signin")} >
             <Text style={[ styles.footerText, { marginLeft: 6, color: 'orange' }]}>Sign In </Text>
           </TouchableOpacity>
         </View>
 
       </Animated.View>
-      </KeyboardAvoidingView>
       </LinearGradient>
 
     </View>
@@ -116,7 +114,7 @@ const styles = StyleSheet.create({
    },
   imageContainer: {
     position: 'absolute',
-    top: 20,
+    top: 10,
     transform: [{
       rotate: '-15deg',
     }]

@@ -38,12 +38,14 @@ export default function account() {
                <Text style={{ fontSize: hp(1.5), color: 'orange'}}>Log Out</Text>
             </View>
          </TouchableOpacity>
+
          <Image 
             source={require("../../assets/images/logo.png")} 
-            style={{ width: wp(40), height: wp(40)}}
+            style={{ width: wp(35), height: wp(35)}}
          />
-         <Text style={{ fontSize: hp(3.5), color: 'white', fontWeight: 'bold'}}>Akhil Palsra</Text>
+         <Text style={{ fontSize: hp(3), color: 'white', fontWeight: 'bold'}}>Akhil Palsra</Text>
       </View>
+
       <View style={{ marginVertical: 20}}>
          <Text style={{ fontSize: hp(2.5), color: 'white'}}>Overall Record</Text>
          <View style={[styles.totalContainer, { width: wp(90)}]}>
@@ -57,10 +59,10 @@ export default function account() {
             </View>
          </View>
       </View>
+
       <View style={styles.chartContainer}>
          <Text style={{ fontSize: hp(2.5), color: 'white'}}>Attendance Overview</Text>
          <View style={styles.chartBox}>
-
          </View>
       </View>
    </View>
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#222',
       paddingTop: 40,
-      paddingBottom: 30,
+      paddingBottom: 15,
    },
   logOutContainer: {
    borderRadius: 8,
@@ -111,16 +113,16 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       gap: 12,
-      marginTop: 20,
+      marginTop: 15,
       backgroundColor: '#222',
-      borderRadius: 15,
+      borderRadius: 12,
       padding: 16,
    },
    totalBox: {
       display: 'flex',
       justifyContent: 'center',
       gap: 8,
-      borderRadius: 12,
+      borderRadius: 8,
       padding: 10,
    },
    totalText: {

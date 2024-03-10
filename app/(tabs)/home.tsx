@@ -1,14 +1,8 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity  } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
-import { NavigationProp } from '@react-navigation/native'
 import { router } from 'expo-router'
-
-import { FIREBASE_AUTH } from '@/FirebaseConfig'
-
-interface RouterProps {
-   navigation: NavigationProp<any, any>
-}
+import { Calendar } from 'react-native-calendars'
 
 export default function index() {
   
@@ -54,6 +48,27 @@ export default function index() {
 
         </View>
       </Animated.View>
+
+      <View style={{ marginTop: 30}}>
+         <Calendar 
+            style={{
+               height: hp(60),
+               borderWidth: 1,
+               borderColor: '#444',
+            }}
+            theme={{
+               calendarBackground: '#111',
+               todayTextColor: 'orange',
+               dayTextColor: 'white',
+               textSectionTitleColor: 'orange',
+               textDisabledColor: '#999',
+               indicatorColor: 'green',
+               monthTextColor: 'white',
+            }} 
+            enableSwipeMonths={true}
+            hideArrows={true}
+         />
+      </View>
    </View>
   )
 }

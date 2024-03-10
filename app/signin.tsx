@@ -82,7 +82,7 @@ export default function SignIn() {
           <Text style={styles.footerText}>
               Don't have any account?
           </Text>
-          <TouchableOpacity style={{}} onPress={() => router.push("/signup")} >
+          <TouchableOpacity style={{}} onPress={() => router.replace("/signup")} >
             <Text style={[ styles.footerText, { marginLeft: 6, color: 'orange' }]}>Create Account</Text>
           </TouchableOpacity>
         </View>
