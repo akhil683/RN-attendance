@@ -43,9 +43,8 @@ export default function todo() {
    }
 
 const TodoCard = ({ item } : { item: Todo}) => {
-   console.log(item)
-   const ref = doc(FIRESTORE_DP, `todo/${item?.id}`)
 
+   const ref = doc(FIRESTORE_DP, `todo/${item?.id}`)
    const doneTodo = async () => {
       updateDoc(ref, { done: !item.done})
    }
@@ -67,7 +66,9 @@ const TodoCard = ({ item } : { item: Todo}) => {
                <AntDesign name="delete" size={24} color="red" />
             </TouchableOpacity>
          </View>
-         <Text style={{ width: wp(25), marginLeft: 24, textAlign: 'center', backgroundColor: item?.done ? "green" : "orange", borderRadius: 40}}>{item?.done ? 'completed' : "Incomplete"}</Text>
+         <Text style={{ width: wp(25), marginLeft: 24, textAlign: 'center', backgroundColor: item?.done ? "green" : "orange", borderRadius: 40}}>    
+            {item?.done ? 'completed' : "Incomplete"}
+         </Text>
       </View>
    )
 }
@@ -75,7 +76,7 @@ const TodoCard = ({ item } : { item: Todo}) => {
 
   return (
    <View style={styles.container}>
-      <Text style={[styles.headerText, { fontSize: hp(3)}]}> My <Text style={{ color: 'orange'}}>tasks</Text></Text>
+      <Text style={[styles.headerText, { fontSize: hp(3)}]}> My <Text style={{ color: 'orange'}}>Tasks</Text></Text>
 
       <View style={styles.searchContainer}>
          <TextInput 
@@ -123,11 +124,11 @@ const styles = StyleSheet.create({
       marginBottom: 24,
    },
    textInput: {
-      backgroundColor: '#999',
+      backgroundColor: '#777',
       borderRadius: 60,
       paddingHorizontal: 16,
       paddingVertical: 6,
-      color: 'black',
+      color: 'white',
    },
    todoWrapper: {
       backgroundColor: '#222',

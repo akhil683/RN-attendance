@@ -19,7 +19,7 @@ export default function signup() {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
       alert("check your email")
-      router.replace("/(tabs)/home") 
+      router.replace("/(tabs)/(drawer)/home") 
     } catch (error: any) {
      alert("Sign in Failed" + error.message) 
     } finally {

@@ -59,6 +59,16 @@ export default function leaderBoard() {
       name: 'dushyant',
       present: 26,
     },
+    {
+      id: '11',
+      name: 'Yadav',
+      present: 22,
+    },
+    {
+      id: '12',
+      name: 'Osho',
+      present: 21,
+    },
   ]
 
   return (

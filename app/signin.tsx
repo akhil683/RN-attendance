@@ -18,11 +18,12 @@ export default function SignIn() {
 
   const signIn = async () => {
     setLoading(true)
+    router.replace("/(tabs)/(drawer)/home")
     try {
       const response = await signInWithEmailAndPassword(auth, email, password)
       console.log(response)
       alert("Successfully Signed In")
-      router.replace("/(tabs)/home")
+      // router.replace("/(tabs)/(drawer)/home")
     } catch (error: any) {
      alert("Sign in Failed" + error.message) 
     } finally {

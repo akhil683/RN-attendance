@@ -1,27 +1,38 @@
-import { Image, StyleSheet, Text, View, TouchableOpacity  } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import Animated, { FadeInDown } from 'react-native-reanimated'
-import { router } from 'expo-router'
+import { router, useNavigation } from 'expo-router'
 import { Calendar } from 'react-native-calendars'
+import { DrawerActions } from '@react-navigation/native'
+import { Ionicons } from '@expo/vector-icons';
 
 export default function index() {
-  
-  return (
+   const navigation = useNavigation()
+
+   const onToggle = () => {
+      navigation.dispatch(DrawerActions.openDrawer())
+   }
+
+   return (
    <View style={styles.Container}>
       <Animated.View entering={FadeInDown.delay(100)} style={styles.headerContainer}>
+         <TouchableOpacity onPress={onToggle}>
+            <Ionicons name="menu" size={30} color="white" />
+         </TouchableOpacity>
          <Text style={[styles.headerText, { fontSize: hp(5)}]}>
             Hi <Text style={{ color: 'orange'} }>Akhil !</Text>
          </Text>
          <TouchableOpacity onPress={() => router.push("/(tabs)/account")}>
           <Image 
             style={{ width: hp(8), height: hp(8)}}
-            source={require("../../assets/images/logo.png")} 
+            source={require("../../../assets/images/logo.png")} 
           />
          </TouchableOpacity>
       </Animated.View>
       
       <Animated.View entering={FadeInDown.delay(200)} style={styles.recordContainer}>
-        <Text style={[styles.recordHeaderText, { fontSize: hp(3)}]}>Attendance Record</Text>
+        <Text style={[styles.recordHeaderText, { fontSize: hp(3.5)}]}>Attendance Record</Text>
 
         <View style={styles.recordBlockContainer}>
 
@@ -64,9 +75,10 @@ export default function index() {
                textDisabledColor: '#999',
                indicatorColor: 'green',
                monthTextColor: 'white',
+               arrowColor: 'orange'
             }} 
-            enableSwipeMonths={true}
-            hideArrows={true}
+            // enableSwipeMonths={true}
+            // hideArrows={true}
          />
       </View>
    </View>
@@ -83,6 +95,7 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row', 
       justifyContent: 'space-between',
+      alignItems: 'center',
       marginVertical: 16,
       paddingHorizontal: 24,
    },

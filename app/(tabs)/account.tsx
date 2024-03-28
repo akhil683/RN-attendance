@@ -1,9 +1,10 @@
+import { useState } from 'react'
+
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { router } from 'expo-router'
 
 import { FIREBASE_AUTH } from '@/FirebaseConfig'
-import { useState } from 'react'
 import Chart from '@/components/Chart'
 
 export default function account() {
@@ -102,11 +103,11 @@ const styles = StyleSheet.create({
       paddingBottom: 15,
    },
   logOutContainer: {
-   borderRadius: 8,
-   paddingHorizontal: 8,
-   paddingVertical: 6,
-   borderWidth: 1,
-   borderColor: 'orange', 
+      borderRadius: 8,
+      paddingHorizontal: 8,
+      paddingVertical: 6,
+      borderWidth: 1,
+      borderColor: 'orange', 
   },
    totalContainer: {
       display: 'flex',
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
       marginTop: 15,
       backgroundColor: '#222',
       borderRadius: 12,
-      padding: 16,
+      padding: 10,
    },
    totalBox: {
       display: 'flex',
@@ -130,9 +131,9 @@ const styles = StyleSheet.create({
       color: 'white',
    },
    chartContainer: {
-
+      paddingHorizontal: 20,
    },
-   chartBox: {
-
-   }
+   // chartBox: {
+   //    overflow: 'scroll'      
+   // }
 })

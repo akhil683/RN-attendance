@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function _layout() {
+export default function TabLayout() {
 
   return (
    <Tabs screenOptions={{
@@ -15,7 +15,7 @@ export default function _layout() {
       tabBarActiveBackgroundColor: '#111',
    }}> 
       <Tabs.Screen
-         name='home'
+         name='(drawer)'
          options={{
             tabBarIcon: ({ color }) => <Entypo name="home" size={28} color={color} />
          }}
